@@ -1,6 +1,6 @@
 NAME        = test
 LIB_NAME	= libasm.a
-SRC         = test.s
+SRC         = ft_strlen.s
 OBJ         = $(SRC:.s=.o)
 
 NASM        = nasm
