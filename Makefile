@@ -1,6 +1,8 @@
-NAME        = test
-LIB_NAME	= libasm.a
-SRC         = ft_strcpy.s
+NAME        = libasm.a
+SRC         = ft_strcpy.s \
+              ft_strlen.s \
+			  ft_strcmp.s \
+			  ft_write.s  \
 
 OBJ         = $(SRC:.s=.o)
 
@@ -10,11 +12,11 @@ AR          = ar rcs
 
 all: $(NAME)
 
-$(OBJ): $(SRC)
-	$(NASM) $(NASM_FLAGS) $(SRC) -o $(OBJ)
+%.o: %.s
+	$(NASM) $(NASM_FLAGS) $< -o $@
 
 $(NAME): $(OBJ)
-	$(AR) $(LIB_NAME) $(OBJ)
+	$(AR) $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)
@@ -25,4 +27,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
