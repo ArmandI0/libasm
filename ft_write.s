@@ -26,7 +26,7 @@ error:
     call __errno_location wrt ..plt   ; return pointer to errno in rax ; wrt ..plt specify a dynamic linkage to call _errno
     pop rdx
     
-    mov [rax], rdx
+    mov [rax], rdx  ; set errno to err value
     mov rax, -1
     ret
 
