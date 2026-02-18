@@ -9,7 +9,7 @@ SRC         = ft_strcpy.s	\
 OBJ         = $(SRC:.s=.o)
 
 NASM        = nasm
-NASM_FLAGS  = -felf64
+NASM_FLAGS  = -felf64 -g
 AR          = ar rcs 
 
 all: $(NAME)

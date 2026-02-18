@@ -15,19 +15,19 @@ ft_strdup:
 
     ; if len == 0
     cmp rax, 0
-    je end
+    je error
 
+    inc rax ; len + 1 = '\0'
     push rdi    ; save char *s
     mov r9, rax
     push r9
     ; esle
+    
+    
+    
+
     ;void   *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);
     ;rax    mmap(rdi, rsi, rdx, r10, r8, r9)
-    
-    
-    incrementer avant de push ca sert a rien al 
-    inc rax ; len + 1 = '\0'
-
     mov rdi, 0
     mov rsi, rax    ; set rsi to return value of ft_strlen
     mov rdx, PROT_READ | PROT_WRITE
@@ -58,4 +58,8 @@ loop:
 
 end:
     mov byte[rax + rcx], 0
+    ret
+
+error:
+    mov rax, 0
     ret
