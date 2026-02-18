@@ -75,11 +75,19 @@ int main() {
 
 
     /*  FT_STRDUP   */
-    printf("\n**********    TEST FT_STRDUP    **********\n\n");
+    printf("\n*********    TEST FT_STRDUP    *********\n\n");
     char *test = "TEST FT_STRDUP\n";
-    char *result = ft_strdup(test);
+    char *test2 = "";
+    char *result = ft_strdup(test2);
+    printf("ft_strdup %s", result);
+    perror("perror");
 
-    printf("strdup %s\n", result);
+    char *result_original = strdup(test2);
+    printf("strdup %s", result_original);
+    perror("perror");
+
+
+
 
     printf("\n****************************************\n\n");
 
