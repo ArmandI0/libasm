@@ -23,6 +23,9 @@ ft_strdup:
     ; esle
     ;void   *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);
     ;rax    mmap(rdi, rsi, rdx, r10, r8, r9)
+    
+    
+    incrementer avant de push ca sert a rien al 
     inc rax ; len + 1 = '\0'
 
     mov rdi, 0
@@ -38,17 +41,18 @@ ft_strdup:
     pop r9
     pop rdi     ; get char *s
 
-loop:
     xor rcx, rcx ; counter -> set rcx = 0
 
-    ; rax[rcx] = rdi[rcx] 
-    mov dh, byte[rdi + rcx]
-    mov byte[rax + rcx], dh
+loop:
 
-    inc rcx
+    ; rax[rcx] = rdi[rcx] 
+    mov dl, byte[rdi + rcx]
+    mov byte[rax + rcx], dl
 
     cmp rcx, r9 ; rcx == len s
     je end
+
+    inc rcx
 
     jmp loop
 
