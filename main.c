@@ -14,8 +14,12 @@ char        *ft_strdup(const char *s);
 
 int main() {
     /*  FT_STRLEN   */
+    printf("\n**********    TEST FT_STRLEN   **********\n\n");
 
+    char *test_str = "123456789";
+    printf("size ft_strlen = %d\n", ft_strlen(test_str));
 
+    printf("\n****************************************\n\n");
 
     /*  FT_STRCPY   */
     printf("\n**********    TEST FT_STRCPY   **********\n\n");
@@ -51,7 +55,7 @@ int main() {
 
     int     fd_write = 1;
     char    *buffer_write = "La chaine à envoyer\n";
-    size_t  count_write = 50;
+    size_t  count_write = 21;
 
     printf("\nret ft_write : %ld\n", ft_write(fd_write, buffer_write, count_write));
     perror("ft_write ");
@@ -61,33 +65,28 @@ int main() {
 
 
     /*  FT_READ     */
-    // printf("\n**********    TEST FT_READ    **********\n\n");
+    printf("\n**********    TEST FT_READ    **********\n\n");
 
-    // int     fd_read = 0;
-    // char    buffer_read[256];
-    // size_t  count_read = 10;
+    int     fd_read = 0;
+    char    buffer_read[256];
+    size_t  count_read = 10;
 
-    // printf("\nret ft_read : %ld\n", ft_read(fd_read, buffer_read, count_read));
-    // perror("ft_read ");
-    // printf("\nret read    : %ld\n", read(fd_read, buffer_read, count_read));
-    // perror("read : ");
-    // printf("\n****************************************\n\n");
+    printf("\nret ft_read : %ld\n", ft_read(fd_read, buffer_read, count_read));
+    perror("ft_read ");
+    printf("\nret read    : %ld\n", read(fd_read, buffer_read, count_read));
+    perror("read : ");
+    printf("\n****************************************\n\n");
 
 
     /*  FT_STRDUP   */
     printf("\n*********    TEST FT_STRDUP    *********\n\n");
     char *test = "TEST FT_STRDUP\n";
     char *test2 = "";
-    char *result = ft_strdup(test2);
+    char *result = ft_strdup(test);
     printf("ft_strdup %s", result);
-    perror("perror");
 
-    char *result_original = strdup(test2);
+    char *result_original = strdup(test);
     printf("strdup %s", result_original);
-    perror("perror");
-
-
-
 
     printf("\n****************************************\n\n");
 
