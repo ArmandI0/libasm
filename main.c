@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <errno.h>
 
 
@@ -87,6 +88,9 @@ int main() {
 
     char *result_original = strdup(test);
     printf("strdup %s", result_original);
+
+    free(result);
+    free(result_original);
 
     printf("\n****************************************\n\n");
 
