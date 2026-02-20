@@ -10,49 +10,47 @@ section .text
 ft_strdup:
     call ft_strlen
 
-    ; if len == 0
-    cmp rax, 0
-    je error
-
+    ; SAVE AND ALIGN MEMORY
     push rdi                ; save char *s
     mov r9, rax
     push r9                 ; save len
 
-    inc rax                 ; len + 1 = '\0' -> for alloc size
-    mov rdi, rax
-
+    push r12                ; Preserve S12
     mov r12, rsp            ; Save the stack pointer
     and rsp, -16            ; Align rsp before call libc
+
+    ; PREPARE AND CALL MALLOC
+    inc rax                 ; len + 1 = '\0' -> for alloc size
+    mov rdi, rax
     call malloc wrt ..plt
+
+    ; RESTORE MEMORY
     mov rsp, r12            ; Restore rsp after call
-
-    cmp rax, 0              ; if malloc return NULL
-    je error
-
+    pop r12
 
     pop r9                  ; get len
     pop rdi                 ; get char *s
 
+    ; HANDLE RETURN
+    cmp rax, 0              ; if malloc return NULL
+    je .error
     xor rcx, rcx            ; counter -> set rcx = 0
 
-loop:
+.loop:
 
     ; rax[rcx] = rdi[rcx] 
     mov dl, byte[rdi + rcx]
     mov byte[rax + rcx], dl
 
     cmp rcx, r9 ; rcx == len s
-    je end
+    je .end
 
     inc rcx
+    jmp .loop
 
-    jmp loop
-
-end:
-    mov byte[rax + rcx], 0
+.end:
     ret
 
-error:
+.error:
     mov rax, 0
     ret
-

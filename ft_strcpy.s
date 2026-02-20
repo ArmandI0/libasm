@@ -17,7 +17,6 @@ loop:
 
 end:
     mov byte[rdi + rdx], 0  ; rdi[rdx] = '\0'
-    mov rax, [rdi]          ; To return destination
+    mov rax, rdi            ; To return destination
     ret
-
 

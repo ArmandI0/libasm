@@ -20,9 +20,18 @@ error:
     ; save rax in rdx and push to save it before call
     mov rdx, rax
     push rdx
+
+    push r12                ; Preserve S12
+    mov r12, rsp            ; Save the stack pointer
+    and rsp, -16            ; Align rsp before call libc    mov 
+
     call __errno_location wrt ..plt   ; return pointer to errno in rax ; wrt ..plt specify a dynamic linkage to call _errno
-    pop rdx
     
-    mov [rax], rdx
+    mov rsp, r12            ; Restore rsp after call
+    pop r12
+
+    pop rdx
+
+    mov dword [rax], edx  ; set errno to err value
     mov rax, -1
     ret
